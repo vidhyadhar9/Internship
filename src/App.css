@@ -1,38 +1,38 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* .css-11a8txn-MuiStack-root{
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
+.css-1rv8zyt-MuiStack-root{
 
-.App-link {
-  color: #61dafb;
+ 
+} */
+
+.container{
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+
 }
+ .first{ 
+  padding: 5px;
+  margin: 2px;
+   border: 2px solid black;
+  }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ .css-i5q14k-MuiDayCalendar-header{
+  background-color: orange;
+} 
+/* .css-11a8txn-MuiStack-root{
+
+}
+.css-1rtg91x-MuiDateCalendar-root{
+  margin: 20px;
+  background-color: yellow;
+   display: block;
+  margin: auto; 
+}  */
+
+.child{
+  display: flex;
+  justify-content: space-between;
+  margin: 2px;
 }
