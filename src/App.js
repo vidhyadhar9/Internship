@@ -128,23 +128,23 @@ function App() {
         addevent
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Post Evnet</Modal.Title>
+      <Modal show={show} onHide={handleClose} className='AddEvent'>
+        <Modal.Header closeButton  className='CloseButton'>
+          <Modal.Title>Post Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={handleSubmit(postFun)}>
-            <label htmlFor="date">date</label>
-            <input
-              type="date"
-              {...register('date', { required: true })} // Register 'date' field
-            />
-            <label htmlFor="event">event</label>
-            <input
-              type="text"
-              {...register('event', { required: true })} // Register 'event' field
-            />
-            <button className="btn btn-success" type='submit'>Submit</button>
+          <form className='AddEventForm' onSubmit={handleSubmit(postFun)}>
+            <div className='form-group'>
+              <label htmlFor="date">Date :</label>
+              <input type="date" {...register('date', { required: true })} // Register 'date' field
+              />
+            </div>
+            <div className='form-group'>
+              <label htmlFor="event"> Event :</label>
+              <input type="text" {...register('event', { required: true })} // Register 'event' field
+              />
+            </div>
+            <button className="btn btn-success p1" type='submit'>Submit</button>
           </form>
         </Modal.Body>
       </Modal>
