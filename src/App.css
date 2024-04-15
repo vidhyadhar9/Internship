@@ -41,6 +41,11 @@
   justify-content: center;
   display: flex;
 }
+.right_child:not(:first-child) {
+  border-top: 1px solid #ccc;
+  padding-top: 5px; 
+  padding-bottom: 3px;
+}
 .right_child_content{
   /* border: 2px solid red; */
   width: 70%;
@@ -68,7 +73,7 @@ label {
 }
 
 input[type="date"],
-input[type="text"] {
+input[type="text"] ,input[type="time" ]{
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;

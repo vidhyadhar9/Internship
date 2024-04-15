@@ -90,7 +90,7 @@ function App() {
     <div className="primary_container">
       <div className="secondary_container" >
         <div className="left">
-          <LocalizationProvider id='cal' dateAdapter={AdapterDayjs} className = "calander">
+          <LocalizationProvider id='cal' dateAdapter={AdapterDayjs} className="calander">
             <DemoContainer components={['DateCalendar']}>
               <DemoItem label="Todo calendar">
                 <DateCalendar
@@ -107,7 +107,7 @@ function App() {
         </div>
         <div className="right">
           {backendResponse?.map((ele, index) =>
-            <div className="right_child">
+            <div className="right_child" key={index}>
               <div className="right_child_content">
                 {ele.userId}
                 {ele.title}
@@ -120,35 +120,39 @@ function App() {
           )
           }
         </div>
-
-
       </div>
 
-      <Button variant="primary" className="btn btn-primary " style={{ display: 'block', margin: 'auto'}} onClick={handleShow}>
+      <Button variant="primary" className="btn btn-primary " style={{ display: 'block', margin: 'auto' }} onClick={handleShow}>
         addevent
       </Button>
 
       <Modal show={show} onHide={handleClose} className='AddEvent'>
-        <Modal.Header closeButton  className='CloseButton'>
+        <Modal.Header closeButton className='CloseButton'>
           <Modal.Title>Post Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className='AddEventForm' onSubmit={handleSubmit(postFun)}>
-            <div className='form-group'>
-              <label htmlFor="date">Date :</label>
-              <input type="date" {...register('date', { required: true })} // Register 'date' field
-              />
-            </div>
-            <div className='form-group'>
-              <label htmlFor="event"> Event :</label>
-              <input type="text" {...register('event', { required: true })} // Register 'event' field
-              />
-            </div>
-            <button className="btn btn-success p1" type='submit'>Submit</button>
-          </form>
-        </Modal.Body>
-      </Modal>
-    </div>
+          <div className='form-group'>
+            <label htmlFor="date">Date:</label>
+            <input type="date" {...register('date', { required: true })} />
+          </div>
+          <div className='form-group'>
+            <label htmlFor="start-time">Start Time:</label>
+            <input type="time" {...register('start-time', { required: true })} />
+          </div>
+          <div className='form-group'>
+            <label htmlFor="end-time">End Time:</label>
+            <input type="time" {...register('end-time', { required: true })} />
+          </div>
+          <div className='form-group'>
+            <label htmlFor="event">Event:</label>
+            <input type="text" {...register('event', { required: true })} />
+          </div>
+          <button className="btn btn-success p1" type='submit'>Submit</button>
+        </form>
+      </Modal.Body>
+    </Modal>
+    </div >
   );
 }
 
