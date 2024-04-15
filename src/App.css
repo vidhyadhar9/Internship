@@ -1,40 +1,86 @@
-/* .css-11a8txn-MuiStack-root{
-  justify-content: center;
+.primary_container{
+  /* border: 2px solid blue; */
+  margin-top: 50px;
+  padding: 2px;
 }
-.css-1rv8zyt-MuiStack-root{
-
- 
-} */
-
-.container{
+.secondary_container {
   display: flex;
-  justify-content: center;
-  /* align-items: center; */
-
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-top:  2px;
+  /* border: 2px solid black; */
 }
- .first{ 
+
+.left {
+  display: flex;
   padding: 5px;
   margin: 2px;
-   border: 2px solid black;
-  }
-
- .css-i5q14k-MuiDayCalendar-header{
-  background-color: orange;
-} 
-/* .css-11a8txn-MuiStack-root{
+  /* border: 2px solid pink; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 
 }
-.css-1rtg91x-MuiDateCalendar-root{
-  margin: 20px;
-  background-color: yellow;
-   display: block;
-  margin: auto; 
-}  */
+.calander{
+  width: 100%;
+}
 
-.child{
+.css-i5q14k-MuiDayCalendar-header {
+  background-color: orange;
+}
+
+.right{
+  width: 45%;
+  /* border: 2px solid green; */
+  margin: 2px;
+  padding: 2px;
+  height: 400px;
+  overflow: auto;
+  box-shadow: 2px 4px 8px rgba(121, 117, 117, 0.5);
+}
+.right_child{
+  justify-content: center;
   display: flex;
-  justify-content: space-between;
+}
+.right_child:not(:first-child) {
+  border-top: 1px solid #ccc;
+  padding-top: 5px; 
+  padding-bottom: 3px;
+}
+.right_child_content{
+  /* border: 2px solid red; */
+  width: 70%;
+  margin: 2px;
+}
+.right_child_button{
+  width: 30%;
+  justify-content: space-around;
+}
+
+.btn{
   margin: 2px;
 }
 
+.AddEventForm{
+  padding: 20px;
+}
 
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="date"],
+input[type="text"] ,input[type="time" ]{
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+}
