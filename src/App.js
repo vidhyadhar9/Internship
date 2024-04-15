@@ -63,11 +63,14 @@ const postFun=async(formdata)=>
   //function to remove evnet
   const remove=async(postdata)=>{
     try{
-    const response=await axios.post("delurl",postdata)
-    console.log("response",response.data);
+      console.log(postdata.date+postdata.events);
+      // let date2=[];
+      let {date,events}=postdata;
+    const response=await axios.delete(`https://localhost:7299/api/APIscontoller/Remove?curDate=${date}&curEvents=${events}`);
+    console.log("event removed successfully",response);
     }
     catch(error){
-      console.log("error while removing the event");
+      console.log("error while removing the event"+error.message);
     }
 
   }
@@ -75,11 +78,12 @@ const postFun=async(formdata)=>
   //update
   const update=async(postdata)=>{
     try{
-    const response=await axios.post("delurl",postdata)
+      console.log(postdata);
+    const response=await axios.put(`https://localhost:7299/api/APIscontoller/Update?curDate=${postdata.date}&curEvents=${postdata.event}&newDate=${postdata.date}&newEvents=${postdata.events}`)
     console.log("response",response.data);
     }
     catch(error){
-      console.log("error while removing the event");
+      console.log("error while removing the event"+error.message);
     }
 
   }
