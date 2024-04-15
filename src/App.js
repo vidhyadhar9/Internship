@@ -15,11 +15,10 @@ import './App.css';
 
 function App() {
   const [value, setValue] = useState(dayjs());
-  const [backendResponse, setBackendResponse] = useState([]);
+  const [backendResponse, setBackendResponse] = useState();
   const [showSecondDivision, setShowSecondDivision] = useState(false);
   const [showForm, setForm] = useState(false);
   const { register, handleSubmit, formState } = useForm();
-  let content = "content";
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -40,19 +39,6 @@ const postFun=async(formdata)=>
     handleClose();
   }
 }
-  const postFun = async (formdata) => {
-    try {
-      console.log("form data" + formdata.event, formdata.date)
-      const response = await axios.post('https://localhost:7299/api/APIscontoller/Post', formdata);//https://localhost:7299/api/APIscontoller/Post'
-      console.log("response " + response.data);
-    }
-    catch (error) {
-      console.log("error at posting the event" + error.message);
-    }
-    finally {
-      handleClose();
-    }
-  }
 
 
   //getting the events
@@ -61,14 +47,14 @@ const postFun=async(formdata)=>
   let handleButtonClick = async (data) => {
     try {
       console.log(data.$d);
-      const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
+      const response = await axios.get('https://localhost:7299/api/APIscontoller/GetAll');
       // Set the response data in the state
       // response.data=response.data;
       setBackendResponse(response.data);
       setShowSecondDivision(true); // Show the second division upon button click
       console.log(response.data);
     } catch (error) {
-      console.error('Error fetching data from backend:', error);
+      console.error('Error fetching data from backend:', error.message);
     }
   };
 
@@ -79,16 +65,10 @@ const postFun=async(formdata)=>
     try{
       console.log(postdata.date+postdata.events);
       // let date2=[];
-      let {date,events}=postdata;
-    const response=await axios.delete(`https://localhost:7299/api/APIscontoller/Remove?curDate=${date}&curEvents=${events}`);
-    console.log("event removed successfully",response);
-  const remove = async (postdata) => {
-    try {
-      const response = await axios.post("delurl", postdata)
-      console.log("response", response.data);
+      // let {date,events}=postdata;
+      const response=await axios.delete(`https://localhost:7299/api/APIscontoller/Remove?curDate=${postdata.date}&curEvents=${postdata.events}`);
+      console.log("event removed successfully",response);
     }
-    catch(error){
-      console.log("error while removing the event"+error.message);
     catch (error) {
       console.log("error while removing the event");
     }
@@ -101,13 +81,7 @@ const postFun=async(formdata)=>
       console.log(postdata);
     const response=await axios.put(`https://localhost:7299/api/APIscontoller/Update?curDate=${postdata.date}&curEvents=${postdata.event}&newDate=${postdata.date}&newEvents=${postdata.events}`)
     console.log("response",response.data);
-  const update = async (postdata) => {
-    try {
-      const response = await axios.post("delurl", postdata)
-      console.log("response", response.data);
     }
-    catch(error){
-      console.log("error while removing the event"+error.message);
     catch (error) {
       console.log("error while removing the event");
     }
@@ -126,7 +100,7 @@ const postFun=async(formdata)=>
                 <DateCalendar
                   value={value}
                   // onViewChange={()=>handleButtonClick()}
-                  onChange={(newValue) => {
+                    onChange={(newValue) => {
                     setValue(newValue);
                     handleButtonClick(newValue);
                   }}
@@ -135,19 +109,12 @@ const postFun=async(formdata)=>
             </DemoContainer>
           </LocalizationProvider>
         </div>
-        <div className="second border"
-          style={{maxWidth:'50%', overflowX:'auto' ,margin:showSecondDivision ? '15px':'0'}}
-        >
-        {backendResponse?.map((ele,index) => 
-       <div className="child">
-              <div className="">
-              {ele.events}
-        <div className="right">
+       { showSecondDivision&&<div className="right">
           {backendResponse?.map((ele, index) =>
             <div className="right_child" key={index}>
               <div className="right_child_content">
-                {ele.userId}
-                {ele.title}
+                {/* {ele.date} */}
+                {ele.events}
               </div>
               <div className="right_child_button">
                 <button className='btn btn-danger p1' onClick={() => remove(ele)}>remove </button>
@@ -157,7 +124,9 @@ const postFun=async(formdata)=>
           )
           }
         </div>
+}
       </div>
+    
 
       <Button variant="primary" className="btn btn-primary " style={{ display: 'block', margin: 'auto' }} onClick={handleShow}>
         addevent
