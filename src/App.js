@@ -30,7 +30,7 @@ const postFun=async(formdata)=>
 {
   try{
     console.log("form data"+formdata.event,formdata.date) 
-    const response=await axios.post('https://localhost:7299/api/APIscontoller/Post',formdata);//https://localhost:7299/api/APIscontoller/Post'
+    const response=await axios.post(`https://localhost:7299/api/APIscontoller/Post?date=${formdata.date}&events=${formdata.event}`);//https://localhost:7299/api/APIscontoller/Post'
     console.log("response "+response);
   }
   catch(error){
@@ -111,7 +111,6 @@ const postFun=async(formdata)=>
         {backendResponse?.map((ele,index) => 
        <div className="child">
               <div className="">
-              {/* {ele.date} */}
               {ele.events}
               </div>
          <div className="d-flex">
